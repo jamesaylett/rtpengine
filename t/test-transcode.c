@@ -393,8 +393,8 @@ int main(void) {
 	sdp_pt(8, PCMA, 8000);
 	answer();
 	expect(A, recv, "8/PCMA/8000");
-	expect(A, send, "8/PCMA/8000");
-	expect(B, recv, "8/PCMA/8000");
+	expect(A, send, "0/PCMU/8000 8/PCMA/8000");
+	expect(B, recv, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, send, "8/PCMA/8000");
 	packet(A, 8, PCMA_payload, 8, PCMA_payload);
 	packet(B, 8, PCMA_payload, 8, PCMA_payload);
@@ -434,13 +434,12 @@ int main(void) {
 	sdp_pt(0, PCMU, 8000);
 	sdp_pt(8, PCMA, 8000);
 	answer();
-	expect(A, recv, "0/PCMU/8000 8/PCMA/8000");
+	expect(A, recv, "0/PCMU/8000");
 	expect(A, send, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, recv, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, send, "0/PCMU/8000 8/PCMA/8000");
 	packet_seq(A, 0, PCMU_payload, 0, 0, 0, PCMU_payload);
 	packet_seq(B, 0, PCMU_payload, 0, 0, 0, PCMU_payload);
-	packet_seq(A, 8, PCMA_payload, 160, 1, 8, PCMA_payload);
 	packet_seq(B, 8, PCMA_payload, 160, 1, 0, PCMU_payload);
 	end();
 
@@ -458,13 +457,12 @@ int main(void) {
 	sdp_pt(0, PCMU, 8000);
 	sdp_pt(8, PCMA, 8000);
 	answer();
-	expect(A, recv, "0/PCMU/8000 8/PCMA/8000");
+	expect(A, recv, "0/PCMU/8000");
 	expect(A, send, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, recv, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, send, "0/PCMU/8000 8/PCMA/8000");
 	packet_seq(A, 0, PCMU_payload, 0, 0, 0, PCMU_payload);
 	packet_seq(B, 0, PCMU_payload, 0, 0, 0, PCMU_payload);
-	packet_seq(A, 8, PCMA_payload, 160, 1, 0, PCMU_payload);
 	packet_seq(B, 8, PCMA_payload, 160, 1, 0, PCMU_payload);
 	end();
 
@@ -502,7 +500,7 @@ int main(void) {
 	answer();
 	expect(A, recv, "0/PCMU/8000");
 	expect(A, send, "0/PCMU/8000");
-	expect(B, recv, "8/PCMA/8000");
+	expect(B, recv, "0/PCMU/8000 8/PCMA/8000");
 	expect(B, send, "8/PCMA/8000");
 	packet(A, 0, PCMU_payload, 8, PCMA_payload);
 	packet(B, 8, PCMA_payload, 0, PCMU_payload);

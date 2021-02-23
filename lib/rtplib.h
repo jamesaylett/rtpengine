@@ -32,6 +32,8 @@ struct rtp_payload_type {
 	int bitrate;
 
 	const codec_def_t *codec_def;
+	//unsigned int preference; // 0 = unknown, highest pref = 1, next = 2, etc
+	GList *prefs_link; // link in `codec_prefs` list
 
 	unsigned int for_transcoding:1;
 };
